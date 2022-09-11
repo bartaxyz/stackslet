@@ -1,23 +1,25 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { PriceProvider } from "./src/contexts/PriceContext";
+import { RootStack } from "./src/RootStack";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <PriceProvider>
+        <NavigationContainer>
+          <RootStack />
+        </NavigationContainer>
+      </PriceProvider>
+    </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
