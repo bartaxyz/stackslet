@@ -1,5 +1,4 @@
 import { Canvas, useFrame } from "@react-three/fiber/native";
-import { EffectComposer, Noise } from "@react-three/postprocessing";
 import { Displace as DisplaceType } from "lamina/vanilla";
 import { useRef, useState } from "react";
 import { Button, SafeAreaView, Text } from "react-native";
@@ -139,11 +138,6 @@ export const Background: React.FC<React.PropsWithChildren<any>> = ({
         scale={[3, 3, 3]}
         parallaxMultiplier={1}
       />
-
-      <EffectComposer>
-        <Noise opacity={0.5} />
-      </EffectComposer>
-
       {/* <AdaptivePixelRatio /> */}
     </Canvas>
   );
